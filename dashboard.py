@@ -181,8 +181,7 @@ if cbx_data:
 
     explainers = shap.TreeExplainer(clf)
     data_for_prediction = sample[sample.index==customerid].iloc[0]
-    
-    data_for_prediction.drop('Unnamed: 0', inplace=True, axis=1)
+
     
 
     data_for_prediction_array = data_for_prediction.values.reshape(1, -1)
