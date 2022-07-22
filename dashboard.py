@@ -60,7 +60,6 @@ div.st-cs.st-c5.st-bc.st-ct.st-cu:before {content: "Sélectionner l'information 
 </style>
 """
 
-
 def load_data():
     # load datas
     # data of the customers
@@ -181,7 +180,7 @@ if cbx_data:
     shap_values = load_explainer()
 
     explainers = shap.TreeExplainer(clf)
-    data_for_prediction = sample[sample.index==customerid]  # use 1 row of data here. Could use multiple rows if desired
+    data_for_prediction = sample.loc[sample.index==customerid]  # use 1 row of data here. Could use multiple rows if desired
     data_for_prediction.drop('Unnamed: 0', inplace=True, axis=1)
     
 
@@ -227,7 +226,7 @@ if cbx_compare:
         data_age = load_age(data)
         fig = go.Figure()
         fig = go.Figure(data=[go.Histogram(x=data_age)])
-        #fig.add_vline(x=int(load_age(customer_data)), line_dash = 'dash', line_color = '#f3f9fd')
+        fig.add_vline(x=int(load_age(customer_data)), line_dash = 'dash', line_color = '#f3f9fd')
 
         fig.update_layout(
         paper_bgcolor = "#f3f9fd", 
