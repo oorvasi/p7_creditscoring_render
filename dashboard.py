@@ -68,6 +68,8 @@ def load_data():
     # data of the customers preprocessed 
     sample = pd.read_csv('datas/sample_preproc.csv.zip', index_col='SK_ID_CURR')
     
+    sample.drop('Unnamed: 0', inplace=True, axis=1)
+    
     return data, sample
 
 def load_explainer():
@@ -181,8 +183,6 @@ if cbx_data:
 
     explainers = shap.TreeExplainer(clf)
     data_for_prediction = sample[sample.index==customerid].iloc[0]
-
-    
 
     data_for_prediction_array = data_for_prediction.values.reshape(1, -1)
     # Calculate Shap values
