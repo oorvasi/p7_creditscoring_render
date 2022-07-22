@@ -60,7 +60,6 @@ div.st-cs.st-c5.st-bc.st-ct.st-cu:before {content: "Sélectionner l'information 
 </style>
 """
 
-
 def load_data():
     # load datas
     # data of the customers
@@ -69,6 +68,8 @@ def load_data():
     # data of the customers preprocessed 
     sample = pd.read_csv('datas/sample_preproc.csv.zip', index_col='SK_ID_CURR')
     
+    del sample['Unnamed: 0']
+        
     return data, sample
 
 def load_explainer():
@@ -181,9 +182,7 @@ if cbx_data:
     shap_values = load_explainer()
 
     explainers = shap.TreeExplainer(clf)
-    data_for_prediction = sample[sample.index==customerid]  # use 1 row of data here. Could use multiple rows if desired
-    data_for_prediction.drop('Unnamed: 0', inplace=True, axis=1)
-    
+    data_for_prediction = sample[sample.index==customerid].iloc[0]
 
     data_for_prediction_array = data_for_prediction.values.reshape(1, -1)
     # Calculate Shap values
@@ -197,7 +196,7 @@ if cbx_data:
     
     # display graph from shap for customer selected
     
-    st.info("Variables importantes")
+    st.info("Variables importantes du client")
     fig, ax = plt.subplots(nrows=1, ncols=1)
     shap.plots.waterfall(shap_values[customer_row])
     st.pyplot(fig)
