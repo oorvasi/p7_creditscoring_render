@@ -180,7 +180,7 @@ if cbx_data:
     shap_values = load_explainer()
 
     explainers = shap.TreeExplainer(clf)
-    data_for_prediction = sample.loc[sample.index==customerid]  # use 1 row of data here. Could use multiple rows if desired
+    data_for_prediction = sample[sample.index==customerid].copy()  # use 1 row of data here. Could use multiple rows if desired
     data_for_prediction.drop('Unnamed: 0', inplace=True, axis=1)
     
 
