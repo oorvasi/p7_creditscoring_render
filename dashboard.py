@@ -180,7 +180,7 @@ if cbx_data:
     shap_values = load_explainer()
 
     explainers = shap.TreeExplainer(clf)
-    sample.loc[sample[0]==customerid] = data_for_prediction
+    data_for_prediction = sample[sample.index==customerid].iloc[0]
     
     data_for_prediction.drop('Unnamed: 0', inplace=True, axis=1)
     
