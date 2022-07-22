@@ -197,7 +197,7 @@ if cbx_data:
     
     # display graph from shap for customer selected
     
-    st.info("Variables importantes")
+    st.info("Variables importantes du client")
     fig, ax = plt.subplots(nrows=1, ncols=1)
     shap.plots.waterfall(shap_values[customer_row])
     st.pyplot(fig)
