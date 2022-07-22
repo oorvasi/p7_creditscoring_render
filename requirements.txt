@@ -8,7 +8,6 @@ Flask==2.1.2
 lightgbm==2.3.1
 shap
 matplotlib
-pandas
 streamlit
 plotly
 explainerdashboard
