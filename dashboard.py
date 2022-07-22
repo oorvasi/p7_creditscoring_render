@@ -227,7 +227,7 @@ if cbx_compare:
         data_age = load_age(data)
         fig = go.Figure()
         fig = go.Figure(data=[go.Histogram(x=data_age)])
-        fig.add_vline(x=int(load_age(customer_data)), line_dash = 'dash', line_color = '#f3f9fd')
+        #fig.add_vline(x=int(load_age(customer_data)), line_dash = 'dash', line_color = '#f3f9fd')
 
         fig.update_layout(
         paper_bgcolor = "#f3f9fd", 
