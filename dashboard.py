@@ -12,6 +12,7 @@ from lightgbm import LGBMClassifier
 import json
 from explainerdashboard import InlineExplainer
 import base64
+import urllib.request
 
 # CSS
 def get_base64(bin_file):
@@ -59,6 +60,7 @@ div.st-cs.st-c5.st-bc.st-ct.st-cu:before {content: "Sélectionner l'information 
 </style>
 """
 
+
 def load_data():
     # load datas
     # data of the customers
@@ -69,20 +71,19 @@ def load_data():
     
     return data, sample
 
+def load_explainer():
+    
+    # load shap_values
+    shap_values = pickle.load(urllib.request.urlopen("https://www.dropbox.com/s/e4yj7wwnz0tzz4q/shap_values.pkl?dl=1"))
+
+    return shap_values
+
 def load_model():
     # load model
-    pickle_classifier = open('models/LGBMClassifier.pkl.zip','rb')
+    pickle_classifier = open('models/LGBMClassifier.pkl','rb')
     clf=pickle.load(pickle_classifier)
 
-    # load explainer
-    pickle_explainer = open('models/explainer.pkl.zip','rb')
-    explainer=pickle.load(pickle_explainer)
-
-    # load shap_values
-    pickle_shap_values = open('models/shap_values.pkl.zip','rb')
-    shap_values=pickle.load(pickle_shap_values)
-
-    return clf, explainer, shap_values
+    return clf
 
 @st.cache
 def load_age(data):
@@ -118,7 +119,7 @@ with col2:
 data, sample = load_data()
 id_client = sample.index.values
 
-clf, explainer, shap_values = load_model()
+clf = load_model()
 
 # selectbox for customersID
 customerid=st.sidebar.selectbox("Client ID", id_client)
@@ -176,6 +177,8 @@ if cbx_data:
       
     st.info("Interprétabilité du défaut de paiement")
     set_background('datas/bk2.png')
+
+    shap_values = load_explainer()
 
     explainers = shap.TreeExplainer(clf)
     data_for_prediction = sample[sample.index==customerid]  # use 1 row of data here. Could use multiple rows if desired
