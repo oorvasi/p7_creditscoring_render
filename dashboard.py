@@ -71,15 +71,15 @@ def load_data():
 
 def load_model():
     # load model
-    pickle_classifier = open('models/LGBMClassifier.pkl','rb')
+    pickle_classifier = open('models/LGBMClassifier.pkl.zip','rb')
     clf=pickle.load(pickle_classifier)
 
     # load explainer
-    pickle_explainer = open('models/explainer.pkl','rb')
+    pickle_explainer = open('models/explainer.pkl.zip','rb')
     explainer=pickle.load(pickle_explainer)
 
     # load shap_values
-    pickle_shap_values = open('models/shap_values.pkl','rb')
+    pickle_shap_values = open('models/shap_values.pkl.zip','rb')
     shap_values=pickle.load(pickle_shap_values)
 
     return clf, explainer, shap_values
