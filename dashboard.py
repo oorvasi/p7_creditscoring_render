@@ -13,6 +13,8 @@ import json
 from explainerdashboard import InlineExplainer
 import base64
 import urllib.request
+import warnings
+warnings.filterwarnings("ignore")
 
 # CSS
 def get_base64(bin_file):
