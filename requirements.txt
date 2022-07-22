@@ -12,4 +12,4 @@ pandas
 streamlit
 plotly
 explainerdashboard
-flask-simplelogin==8.0.2
+flask-simplelogin==0.0.6
