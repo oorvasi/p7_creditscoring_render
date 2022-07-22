@@ -68,8 +68,8 @@ def load_data():
     # data of the customers preprocessed 
     sample = pd.read_csv('datas/sample_preproc.csv.zip', index_col='SK_ID_CURR')
     
-    sample = sample.drop('Unnamed: 0', inplace=True, axis=1)
-    
+    del sample['Unnamed: 0']
+        
     return data, sample
 
 def load_explainer():
