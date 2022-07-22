@@ -74,7 +74,7 @@ def load_data():
 def load_explainer():
     
     # load shap_values
-    shap_values = pickle.load(urllib.request.urlopen("https://www.dropbox.com/s/e4yj7wwnz0tzz4q/shap_values.pkl?dl=1"))
+    shap_values = pickle.load(urllib.request.urlopen("https://www.dropbox.com/s/djwdv6egf8d1jtl/shap_values.pkl?dl=1"))
 
     return shap_values
 
